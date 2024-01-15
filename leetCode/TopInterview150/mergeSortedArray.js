@@ -59,11 +59,24 @@ const merge = (nums1, m, nums2, n) => {
 // console.log(merge([1,2,3,0,0,0], 3, [2,5,6], 3))
 
 const mergeV2 = (nums1, m, nums2, n) => {
-    for (let i = 0; i < nums1.length; i++) {
-        if (nums1[i] < 1) {
-            nums1.splice(i, 1)
+    if (nums1.length > 0) {
+        for (let i = nums1.length - 1; i >= 0; i--) {
+            if (nums1[i] < 1) {
+                nums1.splice(i, 1)
+            }
         }
     }
+    if (nums2.length > 0) {
+        for (let i = nums2.length - 1; i >= 0; i--) {
+            if (nums2[i] < 1) {
+                nums2.splice(i, 1)
+            }
+            else {
+                nums1.push(nums2[i])
+            }
+        }
+    }
+    nums1.sort((a,b) => a - b)
     console.log(nums1)
     m = nums1.length
     n = nums2.length
